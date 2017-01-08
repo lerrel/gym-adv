@@ -113,6 +113,11 @@ class AcrobotEnv(core.Env):
         return self._get_ob()
 
     def _step(self, action):
+        if not hasattr(action, '__dict__'):
+            t_action = self.sample_action()
+            t_action.pro = action
+            t_action.adv = t_action.adv*0.0
+            action = t_action
         assert self.pro_action_space.contains(action.pro), "%r (%s) invalid"%(action.pro, type(action.pro))
         assert self.adv_action_space.contains(action.adv), "%r (%s) invalid"%(action.adv, type(action.adv))
         self.cur_gravity = self.init_gravity + action.adv

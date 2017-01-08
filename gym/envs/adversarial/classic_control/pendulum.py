@@ -11,7 +11,7 @@ class PendulumEnv(gym.Env):
     }
 
     def __init__(self):
-        self.max_speed=8
+        self.max_speed=8.
         self.max_torque=2.
         self.dt=.05
         self.viewer = None
@@ -24,7 +24,6 @@ class PendulumEnv(gym.Env):
         self.adv_action_space = spaces.Box(-grav_change_abs,grav_change_abs)
         self.init_gravity = 10.0
         self.cur_gravity = self.init_gravity
-
         self._seed()
 
     def sample_action(self):
@@ -44,6 +43,11 @@ class PendulumEnv(gym.Env):
         return [seed]
 
     def _step(self,action):
+        if not hasattr(action, '__dict__'):
+            t_action = self.sample_action()
+            t_action.pro = action
+            t_action.adv = t_action.adv*0.0
+            action = t_action
         assert self.pro_action_space.contains(action.pro), "%r (%s) invalid"%(action.pro, type(action.pro))
         assert self.adv_action_space.contains(action.adv), "%r (%s) invalid"%(action.adv, type(action.adv))
         self.current_gravity = self.init_gravity + action.adv
@@ -57,16 +61,19 @@ class PendulumEnv(gym.Env):
         u = np.clip(action.pro, -self.max_torque, self.max_torque)[0]
         self.last_u = u # for rendering
         costs = angle_normalize(th)**2 + .1*thdot**2 + .001*(u**2)
+        #costs = angle_normalize(th)**2
+        #print 'th ', th, angle_normalize(th), costs
 
         newthdot = thdot + (-3*g/(2*l) * np.sin(th + np.pi) + 3./(m*l**2)*u) * dt
         newth = th + newthdot*dt
+        newth = angle_normalize(newth)
         newthdot = np.clip(newthdot, -self.max_speed, self.max_speed) #pylint: disable=E1111
 
         self.state = np.array([newth, newthdot])
         return self._get_obs(), -costs, False, {}
 
     def _reset(self):
-        high = np.array([np.pi, 1])
+        high = np.array([np.pi, 1.])
         self.state = self.np_random.uniform(low=-high, high=high)
         self.last_u = None
         return self._get_obs()
@@ -74,6 +81,7 @@ class PendulumEnv(gym.Env):
     def _get_obs(self):
         theta, thetadot = self.state
         return np.array([np.cos(theta), np.sin(theta), thetadot])
+        #return np.array([angle_normalize(theta), thetadot])
 
     def _render(self, mode='human', close=False):
         if close:

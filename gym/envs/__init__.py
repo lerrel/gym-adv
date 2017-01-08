@@ -44,6 +44,68 @@ register(
     timestep_limit=500,
 )
 
+# Adversarial MuJoCo
+# ----------------------------------------
+# 2D
+
+register(
+    id='ReacherAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:ReacherEnv',
+    timestep_limit=50,
+    reward_threshold=-3.75,
+)
+
+register(
+    id='InvertedPendulumAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:InvertedPendulumEnv',
+    reward_threshold=950.0,
+)
+
+register(
+    id='InvertedDoublePendulumAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:InvertedDoublePendulumEnv',
+    reward_threshold=9100.0,
+)
+
+register(
+    id='HalfCheetahAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:HalfCheetahEnv',
+    reward_threshold=4800.0,
+)
+
+register(
+    id='HopperAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:HopperEnv',
+    reward_threshold=3800.0,
+)
+
+register(
+    id='SwimmerAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:SwimmerEnv',
+    reward_threshold=360.0,
+)
+
+register(
+    id='Walker2dAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:Walker2dEnv',
+)
+
+register(
+    id='AntAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:AntEnv',
+    reward_threshold=6000.0,
+)
+
+register(
+    id='HumanoidAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:HumanoidEnv',
+)
+register(
+    id='HumanoidStandupAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:HumanoidStandupEnv',
+)
+
+
 
 # Algorithmic
 # ----------------------------------------
