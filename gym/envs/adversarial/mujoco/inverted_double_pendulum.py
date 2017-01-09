@@ -1,6 +1,6 @@
 import numpy as np
 from gym import utils
-from gym.envs.mujoco import mujoco_env
+from gym.envs.adversarial.mujoco import mujoco_env
 
 class InvertedDoublePendulumEnv(mujoco_env.MujocoEnv, utils.EzPickle):
 
@@ -11,7 +11,9 @@ class InvertedDoublePendulumEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     def _step(self, action):
         self.do_simulation(action, self.frame_skip)
         ob = self._get_obs()
-        x, _, y = self.model.data.site_xpos[0]
+        site_name = b'tip'
+        site_index = self.model.site_names.index(site_name)
+        x, _, y = self.model.data.site_xpos[site_index]
         dist_penalty = 0.01 * x ** 2 + (y - 2) ** 2
         v1, v2 = self.model.data.qvel[1:3]
         vel_penalty = 1e-3 * v1**2 + 5e-3 * v2**2

@@ -36,11 +36,18 @@
         <body name="pole2" pos="0 0 0.6">
           <joint axis="0 1 0" name="hinge2" pos="0 0 0" type="hinge"/>
           <geom fromto="0 0 0 0 0 0.6" name="cpole2" rgba="0 0.7 0.7 1" size="0.045 0.3" type="capsule"/>
-          <site name="tip" pos="0 0 .6" size="0.01 0.01"/>
+          <site name="tip" pos="0 0 .6" size="0.1 0.1"/>
         </body>
       </body>
     </body>
+    <site name="end" pos="1 0 .6" size="0.1 0.1"/>
   </worldbody>
+  <tendon>
+        <spatial limited="true" range="0 5.0" width="0.1">
+            <site site="tip"/>
+            <site site="end"/>
+        </spatial>
+  </tendon>
   <actuator>
     <motor ctrllimited="true" ctrlrange="-1 1" gear="500" joint="slider" name="slide"/>
   </actuator>

@@ -1,6 +1,6 @@
 import numpy as np
-from gym import utils
-from gym.envs.mujoco import mujoco_env
+from gym import utils, spaces
+from gym.envs.adversarial.mujoco import mujoco_env
 
 class HalfCheetahEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     def __init__(self):
@@ -10,7 +10,7 @@ class HalfCheetahEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         self._adv_f_bname = b'torso' #Byte String name of body on which the adversary force will be applied
         bnames = self.model.body_names
         self._adv_bindex = bnames.index(self._adv_f_bname) #Index of the body on which the adversary force will be applied
-        adv_max_force = 10.0
+        adv_max_force = 5.
         high_adv = np.ones(2)*adv_max_force
         low_adv = -high_adv
         self.adv_action_space = spaces.Box(low_adv, high_adv)
@@ -37,10 +37,10 @@ class HalfCheetahEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             a = action
 
         xposbefore = self.model.data.qpos[0,0]
-        self.do_simulation(action, self.frame_skip)
+        self.do_simulation(a, self.frame_skip)
         xposafter = self.model.data.qpos[0,0]
         ob = self._get_obs()
-        reward_ctrl = - 0.1 * np.square(action).sum()
+        reward_ctrl = - 0.1 * np.square(a).sum()
         reward_run = (xposafter - xposbefore)/self.dt
         reward = reward_ctrl + reward_run
         done = False
