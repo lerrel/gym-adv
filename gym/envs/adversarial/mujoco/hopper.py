@@ -10,7 +10,7 @@ class HopperEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         self._adv_f_bname = b'torso' #Byte String name of body on which the adversary force will be applied
         bnames = self.model.body_names
         self._adv_bindex = bnames.index(self._adv_f_bname) #Index of the body on which the adversary force will be applied
-        adv_max_force = 10.0
+        adv_max_force = 5.0
         high_adv = np.ones(2)*adv_max_force
         low_adv = -high_adv
         self.adv_action_space = spaces.Box(low_adv, high_adv)

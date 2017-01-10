@@ -139,3 +139,11 @@ class MujocoEnv(gym.Env):
             self.model.data.qpos.flat,
             self.model.data.qvel.flat
         ])
+
+    def update_adversary(self, new_adv_max):
+        from gym import spaces
+        adv_max_force = new_adv_max
+        adv_action_shape = self.adv_action_space.shape[0]
+        high_adv = np.ones(adv_action_shape)*adv_max_force
+        low_adv = -high_adv
+        self.adv_action_space = spaces.Box(low_adv, high_adv)
