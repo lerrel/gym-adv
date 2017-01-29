@@ -80,6 +80,12 @@ register(
 )
 
 register(
+    id='HopperHeelAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:HopperHeelEnv',
+    reward_threshold=3800.0,
+)
+
+register(
     id='SwimmerAdv-v1',
     entry_point='gym.envs.adversarial.mujoco:SwimmerEnv',
     reward_threshold=360.0,
@@ -91,14 +97,30 @@ register(
 )
 
 register(
+    id='Walker2dHeelAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:Walker2dHeelEnv',
+)
+
+register(
     id='AntAdv-v1',
     entry_point='gym.envs.adversarial.mujoco:AntEnv',
     reward_threshold=6000.0,
 )
 
 register(
+    id='AntHeelAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:AntHeelEnv',
+    reward_threshold=6000.0,
+)
+
+register(
     id='HumanoidAdv-v1',
     entry_point='gym.envs.adversarial.mujoco:HumanoidEnv',
+)
+
+register(
+    id='HumanoidHeelAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:HumanoidHeelEnv',
 )
 register(
     id='HumanoidStandupAdv-v1',

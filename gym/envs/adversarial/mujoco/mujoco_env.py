@@ -90,6 +90,8 @@ class MujocoEnv(gym.Env):
         self.model._compute_subtree() #pylint: disable=W0212
         self.model.forward()
 
+    def get_state(self):
+        return (np.squeeze(self.model.data.qpos),np.squeeze(self.model.data.qvel))
 
     @property
     def dt(self):
