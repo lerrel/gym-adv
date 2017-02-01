@@ -80,8 +80,20 @@ register(
 )
 
 register(
+    id='Hopper6Adv-v1',
+    entry_point='gym.envs.adversarial.mujoco:Hopper6Env',
+    reward_threshold=3800.0,
+)
+
+register(
     id='HopperHeelAdv-v1',
     entry_point='gym.envs.adversarial.mujoco:HopperHeelEnv',
+    reward_threshold=3800.0,
+)
+
+register(
+    id='HopperHeel6Adv-v1',
+    entry_point='gym.envs.adversarial.mujoco:HopperHeel6Env',
     reward_threshold=3800.0,
 )
 
