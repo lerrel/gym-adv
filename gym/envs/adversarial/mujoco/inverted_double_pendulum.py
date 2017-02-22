@@ -8,7 +8,7 @@ class InvertedDoublePendulumEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         mujoco_env.MujocoEnv.__init__(self, 'inverted_double_pendulum.xml', 5)
         utils.EzPickle.__init__(self)
 	## Adversarial setup
-        self._adv_f_bname = b'pole' #Byte String name of body on which the adversary force will be applied
+        self._adv_f_bname = b'pole2' #Byte String name of body on which the adversary force will be applied
         bnames = self.model.body_names
         self._adv_bindex = bnames.index(self._adv_f_bname) #Index of the body on which the adversary force will be applied
         adv_max_force = 5.

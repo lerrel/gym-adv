@@ -74,6 +74,17 @@ register(
 )
 
 register(
+    id='HalfCheetahHeelAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:HalfCheetahHeelEnv',
+    reward_threshold=4800.0,
+)
+
+register(
+    id='HalfCheetahTorsoAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:HalfCheetahTorsoEnv',
+    reward_threshold=4800.0,
+)
+register(
     id='HopperAdv-v1',
     entry_point='gym.envs.adversarial.mujoco:HopperEnv',
     reward_threshold=3800.0,
@@ -98,6 +109,12 @@ register(
 )
 
 register(
+    id='HopperTorso6Adv-v1',
+    entry_point='gym.envs.adversarial.mujoco:HopperTorso6Env',
+    reward_threshold=3800.0,
+)
+
+register(
     id='SwimmerAdv-v1',
     entry_point='gym.envs.adversarial.mujoco:SwimmerEnv',
     reward_threshold=360.0,
@@ -111,6 +128,11 @@ register(
 register(
     id='Walker2dHeelAdv-v1',
     entry_point='gym.envs.adversarial.mujoco:Walker2dHeelEnv',
+)
+
+register(
+    id='Walker2dTorsoAdv-v1',
+    entry_point='gym.envs.adversarial.mujoco:Walker2dTorsoEnv',
 )
 
 register(
