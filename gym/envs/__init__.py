@@ -5,12 +5,12 @@ from gym.envs.registration import registry, register, make, spec
 # ----------------------------------------
 # 2D
 
-register(
-    id='ReacherAdv-v1',
-    entry_point='gym.envs.adversarial.mujoco:ReacherEnv',
-    timestep_limit=50,
-    reward_threshold=-3.75,
-)
+#register(
+#    id='ReacherAdv-v1',
+#    entry_point='gym.envs.adversarial.mujoco:ReacherEnv',
+#    timestep_limit=50,
+#    reward_threshold=-3.75,
+#)
 
 register(
     id='InvertedPendulumAdv-v1',
@@ -92,32 +92,32 @@ register(
     entry_point='gym.envs.adversarial.mujoco:Walker2dTorsoEnv',
 )
 
-register(
-    id='AntAdv-v1',
-    entry_point='gym.envs.adversarial.mujoco:AntEnv',
-    reward_threshold=6000.0,
-)
-
-register(
-    id='AntHeelAdv-v1',
-    entry_point='gym.envs.adversarial.mujoco:AntHeelEnv',
-    reward_threshold=6000.0,
-)
-
-register(
-    id='HumanoidAdv-v1',
-    entry_point='gym.envs.adversarial.mujoco:HumanoidEnv',
-)
-
-register(
-    id='HumanoidHeelAdv-v1',
-    entry_point='gym.envs.adversarial.mujoco:HumanoidHeelEnv',
-)
-
-register(
-    id='HumanoidStandupAdv-v1',
-    entry_point='gym.envs.adversarial.mujoco:HumanoidStandupEnv',
-)
+#register(
+#    id='AntAdv-v1',
+#    entry_point='gym.envs.adversarial.mujoco:AntEnv',
+#    reward_threshold=6000.0,
+#)
+#
+#register(
+#    id='AntHeelAdv-v1',
+#    entry_point='gym.envs.adversarial.mujoco:AntHeelEnv',
+#    reward_threshold=6000.0,
+#)
+#
+#register(
+#    id='HumanoidAdv-v1',
+#    entry_point='gym.envs.adversarial.mujoco:HumanoidEnv',
+#)
+#
+#register(
+#    id='HumanoidHeelAdv-v1',
+#    entry_point='gym.envs.adversarial.mujoco:HumanoidHeelEnv',
+#)
+#
+#register(
+#    id='HumanoidStandupAdv-v1',
+#    entry_point='gym.envs.adversarial.mujoco:HumanoidStandupEnv',
+#)
 
 ## Adversarial Classic
 ## ----------------------------------------
